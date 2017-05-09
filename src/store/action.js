@@ -1,3 +1,4 @@
+/*配置action*/
 import ajax from '../config/ajax'
 
 export default {

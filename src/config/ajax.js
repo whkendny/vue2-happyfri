@@ -1,3 +1,4 @@
+/*数据请求*/
 export default (type='GET', url='', data={}, async=true) => {
 	return new Promise((resolve, reject) => { //定义一个promise
 		type = type.toUpperCase();

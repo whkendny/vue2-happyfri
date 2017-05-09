@@ -38,6 +38,7 @@ export default {
 		}
 	},
   	props:['fatherComponent'],
+  	/*在components中使用store中的数据，Vue 提供了组件中使用的 mapState , mapAction , mapGetter 方法，因此可以很方便的调用。*/
   	computed: mapState({
 	  	itemNum: state => state.itemNum,
   		level: state => state.level,
@@ -114,7 +115,7 @@ export default {
 		position: absolute;
 		top: 4.1rem;
 		left: 1rem;
-	}	
+	}
 	.home_logo{
 		background-image: url(../images/1-2.png);
 		background-size: 13.142rem 100%;
