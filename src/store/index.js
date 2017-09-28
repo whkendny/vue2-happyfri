@@ -4,13 +4,16 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
+// 状态改变模块
 import mutations from './mutations'
+// actions 模块
 import actions from './action'
 import ajax from '../config/ajax'
 
 
 Vue.use(Vuex)
 
+// store 实例 单一状态树
 const state = {
 	level: '第一周',
 	itemNum: 1,
@@ -82,6 +85,7 @@ const state = {
 	answerid: {}
 }
 
+// 创建store实例并模块化输出;
 export default new Vuex.Store({
 	state,
 	actions,
