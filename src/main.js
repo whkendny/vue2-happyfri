@@ -14,8 +14,8 @@ import ajax from './config/ajax'
 * style放入公共样式
 * rem.进行适配
 * */
-import './style/common'
-import './config/rem'
+import './style/common.less'
+import './config/rem.js'
 
 //在一个模块化工程中使用它，必须要通过 Vue.use() 明确地安装路由功能：
 Vue.use(VueRouter)

@@ -5,6 +5,8 @@
 * 详见：http://www.shouce.ren/api/view/a/11739
 * 此处是用常量命名Mutations
 * */
+
+// 使用常量替代 Mutation事件类型;
 const GET_DATA = 'GET_DATA'
 const ADD_ITEMNUM = 'ADD_ITEMNUM'
 const REMBER_ANSWER = 'REMBER_ANSWER'
@@ -13,6 +15,7 @@ const INITIALIZE_DATA = 'INITIALIZE_DATA'
 const GET_USER_INFORM = 'GET_USER_INFORM'
 
 export default {
+	// payload: 提交荷载
 	[GET_DATA](state, payload) {
 	  /*
 	  * payload参数：

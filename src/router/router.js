@@ -1,5 +1,5 @@
 /*路由配置*/
-import App from '../App'
+import App from '../App.vue'
 
 export default [{
     path: '/',
