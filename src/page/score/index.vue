@@ -7,7 +7,7 @@
         <div class="share_button" @click="showCover"></div>
         <div class="share_code">
             <header class="share_header">关注葡萄之家，获取答案。</header>
-            <img src="../../images/4-4.png" height="212" width="212" class="code_img"> 
+            <img src="../../images/4-4.png" height="212" width="212" class="code_img">
         </div>
         <div class="share_cover" v-show="showHide" @click="showCover">
             <img src="../../images/5-2.png" class="share_img">

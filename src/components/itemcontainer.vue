@@ -1,3 +1,8 @@
+<!--
+  说明: 这里通过组件中的props属性来进行数据的传递
+  fatherComponent的类型进行判断
+-->
+
 <template>
   	<section>
     	<header class="top_tips">
@@ -6,8 +11,9 @@
     	</header>
     	<div v-if="fatherComponent == 'home'" >
     		<div class="home_logo item_container_style"></div>
-    		<router-link to="item" class="start button_style" ></router-link>
+    		<router-link to="item" class="start button_style"></router-link>
     	</div>
+
     	<div v-if="fatherComponent == 'item'" >
     		<div class="item_back item_container_style">
     			<div class="item_list_container" v-if="this.$store.state.itemDetail.length > 0">
@@ -29,21 +35,24 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 export default {
-	name: 'itemcontainer',
-	data() {
+	 name: 'itemcontainer',
+	 data() {
 		return {
 			itemId: null,
 			choosedNum: null,
 			choosedId:null
 		}
 	},
+
+    // 通过props向itemcontainer.vue子组件传递数据
   	props:['fatherComponent'],
   	/*在components中使用store中的数据，Vue 提供了组件中使用的 mapState , mapAction , mapGetter 方法，因此可以很方便的调用。*/
   	computed: mapState({
 	  	itemNum: state => state.itemNum,
   		level: state => state.level,
   		itemDetail: state => state.itemDetail
-	}),
+	   }),
+
   	methods: {
   		nextItem: function (){
   			if (this.choosedNum !== null) {
@@ -75,6 +84,7 @@ export default {
   			}
 	  	},
 	},
+
 	created(){
 		this.$store.dispatch('initializeData');
 		if(this.$store.state.itemDetail.length == 0){
@@ -84,6 +94,7 @@ export default {
 	}
 }
 </script>
+
 
 <style lang="less">
 	.top_tips{

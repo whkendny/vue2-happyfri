@@ -16,10 +16,10 @@ Vue.use(Vuex)
 // store 实例 单一状态树
 const state = {
 	level: '第一周',
-	itemNum: 1,
-	allTime: 0,
+	itemNum: 1,    //记录第几题
+	allTime: 0,    //记录答题时间
 	timer: '',
-	itemDetail: [{
+	itemDetail: [{   //问题详情
 		"topic_id": 20,
 		"active_topic_id": 4,
 		"type": "ONE",
