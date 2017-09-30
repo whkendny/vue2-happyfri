@@ -28,6 +28,17 @@ export default {
             scoreTipsArr:['你说，是不是把知识都还给小学老师了？','还不错，但还需要继续加油哦！','不要嘚瑟还有进步的空间！','智商离爆表只差一步了！','你也太聪明啦，葡萄之家欢迎你！'],
         }
     },
+
+    mounted(){
+        //就算每题的得分
+
+    },
+    created(){
+          this.score = 20; //为了使流程更简洁, 写死;
+          this.getScoreTip();
+          document.body.style.backgroundImage = 'url(./static/img/4-1.jpg)';
+    },
+
     methods: {
         showCover: function (){
             this.showHide = !this.showHide;
@@ -53,11 +64,6 @@ export default {
                 this.scoreTips = this.scoreTipsArr[4];
             }
         }
-    },
-	created(){
-        this.score = 20;
-        this.getScoreTip();
-        document.body.style.backgroundImage = 'url(./static/img/4-1.jpg)';
     }
 }
 

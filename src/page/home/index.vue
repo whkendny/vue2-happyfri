@@ -31,9 +31,14 @@ export default {
     //todo...这里可以定义此路由下要初始化的数据
     created(){
         // alert('111')
-        this.initData();
+        // this.initData();
     },
-
+    watch:{
+      // call again the method if the route changes
+      '$router' (to, from){
+          // react to route changes...
+      }
+    },
    //todo... 这里定义此路由下要进行的函数操作
     methods:{
       initData: function(){
@@ -41,8 +46,8 @@ export default {
       },
     },
 
-  // todo... 此处是vue中计算属性定义函数的地方
-  computed:{
+   // todo... 此处是vue中计算属性定义函数的地方
+   computed:{
     reverse(){
 
     }
