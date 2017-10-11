@@ -8,14 +8,14 @@ import routes from './router/router'
 /*将store注入vue实例*/
 import store from './store/'
 /*数据请求*/
-import ajax from './config/ajax'
+import ajax from './config/ajax.js'
 
 /*引入样式相关的
 * style放入公共样式
 * rem.进行适配
 * */
-import './style/common'
-import './config/rem'
+import './style/common.less'
+import './config/rem.js'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
