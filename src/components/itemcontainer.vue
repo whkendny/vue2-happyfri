@@ -1,3 +1,7 @@
+<!--
+  说明: 这里通过组件中的props属性来进行数据的传递
+  fatherComponent的类型进行判断
+-->
 <template>
   	<section>
     	<header class="top_tips">
@@ -6,8 +10,9 @@
     	</header>
     	<div v-if="fatherComponent == 'home'" >
     		<div class="home_logo item_container_style"></div>
-    		<router-link to="item" class="start button_style" ></router-link>
+    		<router-link to="item" class="start button_style"></router-link>
     	</div>
+
     	<div v-if="fatherComponent == 'item'" >
     		<div class="item_back item_container_style">
     			<div class="item_list_container" v-if="this.$store.state.itemDetail.length > 0">
@@ -20,7 +25,9 @@
     				</ul>
     			</div>
     		</div>
+        <!--下一题-->
     		<span class="next_item button_style" @click="nextItem" v-if="itemNum < itemDetail.length"></span>
+        <!--提交问题-->
     		<span class="submit_item button_style" v-else @click="submitAnswer"></span>
     	</div>
   	</section>
@@ -29,30 +36,47 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 export default {
-	name: 'itemcontainer',
-	data() {
+	 name: 'itemcontainer',
+	 data() {
 		return {
 			itemId: null,
 			choosedNum: null,
 			choosedId:null
 		}
 	},
+
+    created(){
+      // 初始化
+      this.$store.dispatch('initializeData');
+      if(this.$store.state.itemDetail.length == 0){
+        this.$store.dispatch('getData');
+      }
+      document.body.style.backgroundImage = 'url(./static/img/1-1.jpg)';
+    },
+
+    // 通过props向itemcontainer.vue子组件传递数据
   	props:['fatherComponent'],
   	/*在components中使用store中的数据，Vue 提供了组件中使用的 mapState , mapAction , mapGetter 方法，因此可以很方便的调用。*/
   	computed: mapState({
+      // 箭头函数使代码更简练
+      //vuex存储的状态是响应式的
 	  	itemNum: state => state.itemNum,
   		level: state => state.level,
   		itemDetail: state => state.itemDetail
-	}),
+	   }),
+
   	methods: {
+      //下一题
   		nextItem: function (){
   			if (this.choosedNum !== null) {
 	  			this.choosedNum = null;
+          //在组件中分发Action, 提交到action.js中的addNum()方法中
 	  			this.$store.dispatch('addNum',this.choosedId)
   			}else{
   				alert('您还没有选择答案哦')
   			}
   		},
+      // 返回问题的类型
 	  	chooseType: type => {
 	  		switch(type){
 	  			case 0: return 'A';
@@ -61,29 +85,29 @@ export default {
 	  			case 3: return 'D';
 	  		}
 	  	},
+
+      // 选择问题的事件. type及id
 	  	choosed: function (type,id){
 	  		this.choosedNum = type;
 	  		this.choosedId = id;
 	  	},
+
+      // 最后一题提交
 	  	submitAnswer: function (){
 	  		if (this.choosedNum !== null) {
-	  			this.$store.dispatch('addNum',this.choosedId)
+	  			this.$store.dispatch('addNum',this.choosedId);
+          // 清除计时
 	  			clearInterval(this.$store.state.timer)
+          // 路由跳转至'score'
 	  			this.$router.push('score')
   			}else{
   				alert('您还没有选择答案哦')
   			}
-	  	},
-	},
-	created(){
-		this.$store.dispatch('initializeData');
-		if(this.$store.state.itemDetail.length == 0){
-			this.$store.dispatch('getData');
-		}
-		document.body.style.backgroundImage = 'url(./static/img/1-1.jpg)';
+	  	}
 	}
 }
 </script>
+
 
 <style lang="less">
 	.top_tips{
