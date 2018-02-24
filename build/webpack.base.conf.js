@@ -12,12 +12,12 @@ var useCssSourceMap = cssSourceMapDev || cssSourceMapProd
 
 module.exports = {
     entry: {
-        app: './src/main.js'
+        app: './src/main.js'  // 唯一入口文件
     },
-    output: {
-        path: config.build.assetsRoot,
+    output: {  // 打包输出文件
+        path: config.build.assetsRoot, //打包后的文件存放的地方
         publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-        filename: '[name].js'
+        filename: '[name].js' //打包后输出文件的文件名
     },
     resolve: {
         extensions: ['', '.js', '.vue', '.less', '.css', '.scss'],
@@ -32,22 +32,23 @@ module.exports = {
     resolveLoader: {
         fallback: [path.join(__dirname, '../node_modules')]
     },
+    //loaders的配置需要在modules中进行
     module: {
         loaders: [{
             test: /\.vue$/,
             loader: 'vue'
         }, {
-            test: /\.js$/,
-            loader: 'babel',
-            include: projectRoot,
-            exclude: /node_modules/
+            test: /\.js$/,   // 一个用以匹配loaders所处理文件的拓展名的正则表达式（必须）
+            loader: 'babel', // loader的名称（必须）
+            include: projectRoot, // 手动添加必须处理的文件（文件夹）（可选）；
+            exclude: /node_modules/ // 屏蔽不需要处理的文件（文件夹）（可选）;
         }, {
             test: /\.json$/,
             loader: 'json'
         }, {
             test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
             loader: 'url',
-            query: {
+            query: {  // 为loaders提供额外的设置选项（可选）
                 limit: 10000,
                 name: utils.assetsPath('img/[name].[ext]')
             }
