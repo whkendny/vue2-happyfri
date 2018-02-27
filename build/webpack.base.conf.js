@@ -1,8 +1,12 @@
 var path = require('path')
 var config = require('../config')
 var utils = require('./utils')
+
+//path.resolve(): 将一系列路径或路径段解析为绝对路径。
+// 如果__dirname为: /static_files/png/, projectRoot ==> /static_files/
 var projectRoot = path.resolve(__dirname, '../')
 
+// 开发环境是`production`还是'development'
 var env = process.env.NODE_ENV
     // check env & config/index.js to decide weither to enable CSS Sourcemaps for the
     // various preprocessor loaders added to vue-loader at the end of this file
@@ -15,13 +19,20 @@ module.exports = {
         app: './src/main.js'  // 唯一入口文件
     },
     output: {  // 打包输出文件
-        path: config.build.assetsRoot, //打包后的文件存放的地方
+        path: config.build.assetsRoot, //打包后的文件存放的地方(本地构建地址)
+        // 构建后在html里的路径，一般也是用这个来指定上线后的cdn域名。
+        // 参见: https://segmentfault.com/q/1010000007409246?_ea=1336702
         publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
         filename: '[name].js' //打包后输出文件的文件名
     },
+    //设置模块如何被解析
     resolve: {
-        extensions: ['', '.js', '.vue', '.less', '.css', '.scss'],
+        extensions: ['', '.js', '.vue', '.less', '.css', '.scss'],  //自动解析确定的扩展
+        // 如当前的`__dirname`为: /build/; fallback则为/node_modules
+        // 一个目录(或者目录绝对目录的数组)。如果webpack 在 resolve.root 或者
+        // resolve.modulesDirectories 实在找不到某个模块了，会去这个（些）目录中找。
         fallback: [path.join(__dirname, '../node_modules')],
+        // 创建一些别名, 确保模块引入变量变得更简单
         alias: {
             'vue$': 'vue/dist/vue.common.js',
             'src': path.resolve(__dirname, '../src'),

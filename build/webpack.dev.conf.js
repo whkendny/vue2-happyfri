@@ -27,7 +27,7 @@ module.exports = merge(baseWebpackConfig, {
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin(),
-        
+
         // https://github.com/ampedandwired/html-webpack-plugin
         // 将 index.html 作为入口，注入 html 代码后生成 index.html文件
         new HtmlWebpackPlugin({
