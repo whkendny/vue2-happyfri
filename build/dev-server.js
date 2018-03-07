@@ -8,7 +8,7 @@ var express = require('express')
 var webpack = require('webpack')
 // 一个可以强制打开浏览器并跳转到指定 url 的插件
 var opn = require('opn')
-// 使用 proxyTable
+// 使用 proxyTable, 把请求代理转发到其他服务器的中间件。
 var proxyMiddleware = require('http-proxy-middleware')
 // 使用 dev 环境的 webpack 配置
 var webpackConfig = require('./webpack.dev.conf')

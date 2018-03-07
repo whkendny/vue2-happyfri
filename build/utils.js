@@ -10,6 +10,7 @@ exports.assetsPath = function(_path) {
 exports.cssLoaders = function(options) {
     options = options || {}
         // generate loader string to be used with extract text plugin
+        // (生成用于提取文本插件的加载器字符串)
     function generateLoaders(loaders) {
         var sourceLoader = loaders.map(function(loader) {
             var extraParamChar
@@ -20,6 +21,7 @@ exports.cssLoaders = function(options) {
                 loader = loader + '-loader'
                 extraParamChar = '?'
             }
+            // loader: css-loader/ less-loader...
             return loader + (options.sourceMap ? extraParamChar + 'sourceMap' : '')
         }).join('!')
 
@@ -45,6 +47,7 @@ exports.cssLoaders = function(options) {
 }
 
 // Generate loaders for standalone style files (outside of .vue)
+// 为独立样式文件(出*.vue)生成加载器
 exports.styleLoaders = function(options) {
     var output = []
     var loaders = exports.cssLoaders(options)

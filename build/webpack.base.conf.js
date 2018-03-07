@@ -77,7 +77,7 @@ module.exports = {
             sourceMap: useCssSourceMap
         }),
         postcss: [
-            require('autoprefixer')({
+            require('autoprefixer')({ //进行兼容性处理
                 browsers: ['last 10 versions']
             })
         ]
